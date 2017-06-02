@@ -25,9 +25,9 @@ void PID::UpdateError(double cte) {
     double time_now = clock();
     double dt = (time_now - time_previous) / CLOCKS_PER_SEC;
     time_previous = time_now;
-    p_error = cte - p_error;
+    p_error = cte;
     i_error += cte;
-    d_error = (cte - error) * dt;
+    //d_error = (cte - error) * dt;
 }
 
 double PID::TotalError() {
