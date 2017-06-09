@@ -3,6 +3,7 @@
 #include "json.hpp"
 #include "PID.h"
 #include <math.h>
+#include "twiddle.h"
 
 // for convenience
 using json = nlohmann::json;
@@ -33,6 +34,7 @@ int main()
   uWS::Hub h;
 
   PID pid;
+  Twiddle twiddle;
   // TODO: Initialize the pid variable.
   pid.Init(0.114, 0.000, 3.240);
   pid.Init(0.01, 0.0001, 0.4);
