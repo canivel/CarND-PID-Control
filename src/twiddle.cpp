@@ -27,19 +27,30 @@ double Twiddle::Sum_dp() {
 
 bool Twiddle::Update(double cte) {
     curr_err += cte*cte;
-    if(curr_err > best_err) {
-        // early termination
-        return false;
-    }
-    if(iterations > max_iterations && curr_err < best_err)
+    if(iterations > max_iterations)
     {
         return true;
     }
+    return false;
 }
 
 double Twiddle::Evaluate() {
 
     while (this->Sum_dp() > tolerance)
     {
+        cout << "Current Error: " << curr_err << "Best Error: " << best_err << endl;
+        for(int i=0; i<p.size(); i++)
+        {
+           p[i] += dp[i];
+           if(curr_err < best_err) 
+           {
+               best_err = curr_err;
+               dp[i] *= 1.1;
+           } 
+           else
+           {
+               p[i] -= 2*dp[i];
+           }
+        }
     }
 }
