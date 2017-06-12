@@ -24,3 +24,22 @@ double Twiddle::Sum_dp() {
     }
     return sum;
 }
+
+bool Twiddle::Update(double cte) {
+    curr_err += cte*cte;
+    if(curr_err > best_err) {
+        // early termination
+        return false;
+    }
+    if(iterations > max_iterations && curr_err < best_err)
+    {
+        return true;
+    }
+}
+
+double Twiddle::Evaluate() {
+
+    while (this->Sum_dp() > tolerance)
+    {
+    }
+}
