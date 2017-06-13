@@ -4,19 +4,21 @@
 #include <vector>
 
 class Twiddle {
-public:
-  /*
-  * Errors
-  */
-  double curr_err;
-  double best_err;
 
+private:
   double tolerance = 0.2;
   int param_cnt = 3;
   int max_iterations = 2000;
   int iterations;
   std::vector<double> p;
   std::vector<double> dp;
+
+public:
+  /*
+  * Errors
+  */
+  double curr_err;
+  double best_err;
 
   /*
   * Constructor
