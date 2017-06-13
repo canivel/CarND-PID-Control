@@ -12,6 +12,9 @@ private:
   int iterations;
   std::vector<double> p;
   std::vector<double> dp;
+  enum States {INIT, NEXT_PARAM, GOING_UP, GOING_DOWN};
+  States state;
+  int idx;
 
 public:
   /*

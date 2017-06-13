@@ -67,6 +67,17 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
+          bool useTwiddle = true;
+          if (useTwiddle) {
+            if (!twiddle.Update(cte)) {
+              twiddle.FinishIteration();
+              std::string reset_msg = "42[\"reset\", {}]";
+              ws.send(reset_msg.data(), reset_msg.length(), uWS::OpCode::TEXT);
+              pid.Init(0, 0, 0);
+              throttlePid.Init(1, 0.0001, 0.2);
+            }
+            pid.UpdateCoefficients(twiddle.Coefficients());
+}
           pid.UpdateError(cte);
           steer_value = pid.TotalError();
           
