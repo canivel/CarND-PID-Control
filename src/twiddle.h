@@ -10,7 +10,6 @@ private:
   int param_cnt = 3;
   int max_iterations = 2000;
   int iterations;
-  std::vector<double> p;
   std::vector<double> dp;
   enum States {INIT, NEXT_PARAM, GOING_UP, GOING_DOWN};
   States state;
@@ -22,6 +21,7 @@ public:
   */
   double curr_err;
   double best_err;
+  std::vector<double> p;
 
   /*
   * Constructor
