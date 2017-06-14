@@ -9,14 +9,22 @@ Twiddle::Twiddle() : param_cnt(3), p(param_cnt, 0.), dp(param_cnt, 1.), state(IN
 
 Twiddle::~Twiddle() {}
 
-void Twiddle::InitPID(double Kp, double Ki, double Kd) {
+void Twiddle::InitPID(double Kp, double Ki, double Kd) 
+{
     param_cnt = 3;
     p[0] = Kp;
     p[1] = Ki;
     p[2] = Kd;
 }
 
-double Twiddle::Sum_dp() {
+void Twiddle::Reset(void) 
+{
+    iterations = 0;
+    curr_err = 0;
+}
+
+double Twiddle::Sum_dp() 
+{
     double sum = 0;
     for(const auto elem:p) 
     {
@@ -25,16 +33,20 @@ double Twiddle::Sum_dp() {
     return sum;
 }
 
-bool Twiddle::Update(double cte) {
+bool Twiddle::Update(double cte) 
+{
     curr_err += cte*cte;
+    iterations++;
     if(iterations > max_iterations || curr_err > best_err)
     {
+        cout << "Current Error: " << curr_err << " Best Error: " << best_err << endl;
         return true;
     }
     return false;
 }
 
-double Twiddle::Evaluate() {
+double Twiddle::Evaluate()
+{
     switch(state) 
     {
         case INIT:

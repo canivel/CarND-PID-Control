@@ -41,7 +41,11 @@ int main()
   PID pid;
   Twiddle twiddle;
   // TODO: Initialize the pid variable.
-  pid.Init(0.114, 0.000, 3.240);
+  double kp = 0.114;
+  double ki = 0.000;
+  double kd = 3.240;
+  pid.Init(kp, ki, kd);
+  twiddle.InitPID(kp, ki , kd);
   //pid.Init(0.01, 0.0001, 0.4);
   //pid.Init(0.04, 0.000, 0.4);
   //pid.Init(0.225, 0.001, 16.0);
@@ -70,12 +74,13 @@ int main()
           bool useTwiddle = true;
           if (useTwiddle) 
           {
-            if (!twiddle.Update(cte)) 
+            if (twiddle.Update(cte)) 
             {
               twiddle.Evaluate();
               std::string reset_msg = "42[\"reset\",{}]";
               ws.send(reset_msg.data(), reset_msg.length(), uWS::OpCode::TEXT);
               pid.Init(twiddle.p[0], twiddle.p[1], twiddle.p[2]);
+              twiddle.Reset();
             }
           }
           pid.UpdateError(cte);
