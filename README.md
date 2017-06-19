@@ -2,6 +2,21 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+## PID Controller
+The PID controller continously calculates the error between a desired setpoint and the measured process variable. It is named after it's three coefficients the **P**roportional, **I**ntegral and **D**erivate described below.
+In this project we use the "Cross-Term-Error"(CTE) as process variable and the setpoint to 0.
+
+### **P**roportional Controller
+It's just correcting a portion of the error in the opposite direction. If the proportional gain (Kp) is too high the steering is unstable and oscillates. If the gain is too small the response time is too long.
+
+### **I**ntegral Controller
+Is the sum of all previous error and corrects any offset like a wrong calibrated steering wheel or side wind. For the simulator there is no bias therefore the integral term is almost zero.
+
+### **D**erivative Controller
+The derivative part stabilizes the system by taking the change rate of the error into account.It smoothes the correction of the P controller.
+
+### Tuning the terms
+The twiddle algorithm was implemented but it took too long when starting with senseless parameters. Therefore I manually tuned the parameters starting with the P parameter (I=0, D=0)until the car stayed on track but oscillating a lot. Then I tuned the D parameter to reduce the oscillation. As expected tuning the I parameter had no positive impact. Afterwards I ran the twiddle algorithm to finetune the parameters.
 
 ## Dependencies
 
