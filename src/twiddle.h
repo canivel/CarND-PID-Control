@@ -8,7 +8,7 @@ class Twiddle {
 private:
   double tolerance = 0.2;
   int param_cnt = 3;
-  int max_iterations = 20;
+  int max_iterations = 1000;
   int iterations = 0;
   std::vector<double> dp;
   enum States {INIT, NEXT_PARAM, GOING_UP, GOING_DOWN};
