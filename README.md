@@ -18,6 +18,8 @@ The derivative part stabilizes the system by taking the change rate of the error
 ### Tuning the terms
 The twiddle algorithm was implemented but it took too long when starting with senseless parameters. Therefore I manually tuned the parameters starting with the P parameter (I=0, D=0)until the car stayed on track but oscillating a lot. Then I tuned the D parameter to reduce the oscillation. As expected tuning the I parameter had no positive impact. Afterwards I ran the twiddle algorithm to finetune the parameters.
 
+Here's a [link to my video result](https://youtu.be/rwMGoMmkfUY)
+
 ## Dependencies
 
 * cmake >= 3.5
