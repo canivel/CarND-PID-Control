@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Twiddle::Twiddle() : param_cnt(3), p(param_cnt, 0.), dp(param_cnt, 1.), state(INIT), idx(0)
+Twiddle::Twiddle() : param_cnt(3), p(param_cnt, 0.), dp(param_cnt, 0.1), state(INIT), idx(0)
 {
 }
 
