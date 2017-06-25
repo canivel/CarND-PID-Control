@@ -41,9 +41,9 @@ int main()
   PID pid;
   Twiddle twiddle;
   // TODO: Initialize the pid variable.
-  double kp = 0.114;
-  double ki = 0.000;
-  double kd = 3.240;
+  double kp = 0.18;//0.114;//2.94;
+  double ki = 0.001;
+  double kd = 0.96;//3.24;//11.04;
   pid.Init(kp, ki, kd);
   twiddle.InitPID(kp, ki , kd);
   //pid.Init(0.01, 0.0001, 0.4);
@@ -71,7 +71,7 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-          bool useTwiddle = true;
+          bool useTwiddle = false;
           if (useTwiddle) 
           {
             if (twiddle.Update(cte)) 
@@ -93,7 +93,7 @@ int main()
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = 0.3;
+          msgJson["throttle"] = 0.3;//1.1-abs(steer_value);// 0.3;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
